@@ -8,5 +8,20 @@ import { Product } from 'src/app/_models/product';
 })
 export class ProductCardComponent {
   @Input() product: Product | undefined
-  constructor(){}
+  constructor(
+    private productService: ProductService,
+    private router: Router
+  ){}
+
+  onDelete():void{
+    if(this.product){
+      this.productService.deleteProduct(this.product.id)
+      .subscribe({
+        next:(response)=>{
+          this.router.navigateByUrl('/admin/products/home')
+        }
+      })
+      
+    }
+  }
 }

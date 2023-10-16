@@ -35,4 +35,7 @@ export class ProductService {
   addProduct(model: Product):Observable<void>{
     return this.http.post<void>(`${this.baseUrl}products/add`, model);
   }
+  deleteProduct(id:number):Observable<string>{
+    return this.http.delete<string>(`${this.baseUrl}products/${id}`)
+  }
 }
